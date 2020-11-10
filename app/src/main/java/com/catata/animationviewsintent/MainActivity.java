@@ -43,9 +43,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         GestionPeliculas.crearPeliculas();
 
 
+        //Creamos nuestro adaptador
         MyAdapter myAdapter = new MyAdapter(this,R.id.miGrid, GestionPeliculas.PELICULAS);
 
+        //Se lo pasamos al gridView
         gridView.setAdapter(myAdapter);
+
+        //Indicamos el manejador de OnItemClickListener, decimos this, porque lo hemos implementado en la clase.
         gridView.setOnItemClickListener(this);
     }
 
