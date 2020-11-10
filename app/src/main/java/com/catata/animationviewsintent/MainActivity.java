@@ -39,10 +39,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         gridView = (GridView)findViewById(R.id.miGrid);
 
+        //Llamamos al método estático que carga las películas
         GestionPeliculas.crearPeliculas();
 
 
-        MyAdapter myAdapter = new MyAdapter(R.id.miGrid, GestionPeliculas.PELICULAS,this);
+        MyAdapter myAdapter = new MyAdapter(this,R.id.miGrid, GestionPeliculas.PELICULAS);
 
         gridView.setAdapter(myAdapter);
         gridView.setOnItemClickListener(this);
@@ -50,13 +51,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        //Recuperamos el Tag y hacemos un casting a tipo Película
         Pelicula p = (Pelicula) view.getTag();
+
         Intent intent = new Intent(this, SecondActivity.class);
+
+        //Le añadimos un extra que contendrá el ID de la película.
         Bundle extras = new Bundle();
         extras.putString(Constantes.ID_PELICULA, p.getId());
 
         intent.putExtras(extras);
 
+        //Creamos Opciones de la actividad, en este caso crear una escena de transición
+        //Le pasamos la actividad actual, y elementos de ti par, que contendrá la vista a hacer la animación y una etiqueta que la identifique en la otra Actividad
         ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this,
                 new Pair<View,String>(view.findViewById(R.id.ivFoto), Constantes.SAHRED_VIEW_FOTO),
@@ -74,9 +81,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         MainActivity parent;
         Context c;
         List<Pelicula> peliculas;
-        MyAdapter(int view, List<Pelicula> peliculas, MainActivity parent){
-            super(parent.getBaseContext(),view,peliculas);
-            this.c = parent.getBaseContext();
+
+        //Constructor de nuestro Adaptador
+        //Le pasamos el contexto, la vista padre (GridView) y un ArrayList
+        MyAdapter(Context c, int view, List<Pelicula> peliculas){
+            super(c,view,peliculas); //Llamamos al constructor de la clase padre
+            this.c = c;
             this.peliculas = peliculas;
             this.parent = parent;
 
@@ -84,19 +94,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         @Override
         public int getCount() {
             return super.getCount();
+            //También podríamos haber hecho peliculas.size();
         }
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             View v;
+            //Cargamos en la vista v, el layout de cada elemento del gridview
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = inflater.inflate(R.layout.item_view, null);
+
+            //Obtenemos referencia a cada uno de sus elementos
             TextView tvAutor = (TextView) v.findViewById(R.id.tvAutor);
             TextView tvTitulo = (TextView) v.findViewById(R.id.tvTitulo);
             ImageView ivPortada = (ImageView) v.findViewById(R.id.ivFoto);
 
+            //Asigamnos valor a las vistas en función de la posición i
             tvAutor.setText(peliculas.get(i).getAutor());
             tvTitulo.setText(peliculas.get(i).getTitulo());
             String url = peliculas.get(i).getUrl_portada();
+
+            //Usamos Picasso para añadir una imagen de internet a un imageView
             Picasso.get()
                     .load(url)
                     //.resize(60, 100)
