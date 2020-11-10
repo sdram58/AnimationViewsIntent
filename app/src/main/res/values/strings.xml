@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AnimationViewsIntent</string>
+    <string name="title_activity_second">SecondActivity</string>
+    <string name="lipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque iaculis velit eget lacus iaculis fringilla. Donec hendrerit ipsum id ante vestibulum, ac dapibus dolor eleifend. Nulla sagittis malesuada justo. Sed vehicula lectus eget elit tristique aliquet. Cras pretium nisi dapibus odio sodales volutpat. Nunc ut diam nec enim tristique euismod eu ac enim. Maecenas ut semper ex. Donec congue felis vel interdum fringilla. Vivamus a tortor libero. Nunc porta orci et mollis tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse potenti.
+
+Curabitur id viverra urna. Aliquam quis blandit massa. Praesent et tincidunt orci. Pellentesque pretium pellentesque lobortis. Sed vulputate, lorem nec elementum consequat, sapien felis dictum dui, nec tincidunt mi nisi sed quam. Nunc ut bibendum velit. Nullam placerat erat ac metus tristique, nec luctus ante rutrum.</string>
+
+</resources>
