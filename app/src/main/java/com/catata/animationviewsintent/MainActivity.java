@@ -29,9 +29,7 @@ import java.util.List;
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
-
-
-
+    //Objeto de Tipo GridView
     GridView gridView;
 
     @Override
